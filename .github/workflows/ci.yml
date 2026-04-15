@@ -17,10 +17,17 @@ jobs:
       - name: Configurar Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.x'
+          python-version: '3.9'
 
-      - name: CodeBuild
-        run: buildspec.yml
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install pytest
+          # Si tienes un archivo de requerimientos, descomenta la siguiente línea:
+          # pip install -r requirements.txt
 
-      - name: CodeDeploy
-        run: appspec.yml
+      - name: Ejecutar pruebas (Antes paso CodeBuild)
+        run: python -m pytest tests/
+
+      - name: Finalización
+        run: echo "Validación finalizada con éxito"
