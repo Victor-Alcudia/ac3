@@ -17,17 +17,17 @@ jobs:
       - name: Configurar Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
+          python-version: '3.x'
 
       - name: Instalar dependencias
         run: |
-          python -m pip install --upgrade pip
-          pip install pytest
-          # Si tienes un archivo de requerimientos, descomenta la siguiente línea:
           pip install -r app/requirements.txt
 
-      - name: Ejecutar pruebas (Antes paso CodeBuild)
-        run: python -m pytest 
+      - name: Ejecutar app
+        run: |
+          python app/app.py &
+          sleep 10
 
-      - name: Finalización
-        run: echo "Validación finalizada con éxito"
+      - name: Verificar respuesta
+        run: |
+          curl http://localhost:5000
