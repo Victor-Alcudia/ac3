@@ -24,7 +24,7 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest
           # Si tienes un archivo de requerimientos, descomenta la siguiente línea:
-          # pip install -r requirements.txt
+          pip install -r app/requirements.txt
 
       - name: Ejecutar pruebas (Antes paso CodeBuild)
         run: python -m pytest tests/
