@@ -27,7 +27,7 @@ jobs:
           pip install -r app/requirements.txt
 
       - name: Ejecutar pruebas (Antes paso CodeBuild)
-        run: python -m pytest tests/
+        run: python -m pytest 
 
       - name: Finalización
         run: echo "Validación finalizada con éxito"
